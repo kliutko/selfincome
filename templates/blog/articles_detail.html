@@ -1,0 +1,247 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load mptt_tags blog_tags %}
+{% load mptt_tags static %}
+
+{% block title %} {{ title }} {% endblock %}
+
+                {% block headbanner %}
+                <div class="tz-header-ads pull-right">
+                    <a href="#">
+                        <img src="{% static 'images/data/header-replace.png' %}" alt="ads">
+                    </a>
+                </div>
+                {% endblock %}
+
+        <!--Heading-->
+        {% block sidebarbanner %}
+        <div class="tz-heading">
+            <img src="{% static 'images/data/image-demo/1220x232.png' %}" alt="blog page">
+            <h1>Categories - Right sidebar</h1>
+        </div>
+        {% endblock %}
+        <!--End Heading-->
+
+        <!--Blog wrap-->
+        {% block content %}
+        <div class="blog-post-sidebar">
+
+            <!--Blog post-->
+            <div class="blog-post">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-3 blog-sidebar">
+                            <div class="widget widget_search">
+                                <form class="col-12 col-lg-auto mb-2 mb-lg-0 me-lg-auto" role="search" method="get" action="{% url 'blog:search' %}">
+                                <input type="search" class="form-control" placeholder="Поиск по сайту..." aria-label="Search" name='do' autocomplete="off" id="search">
+                                <i class="icon-search fa fa-search"></i>
+                            </form>
+                            </div>
+                            <div class="widget widget_categories">
+                                <ul>
+                                    <li>
+                                        <a href="page-blog.html">All Homepages</a>
+                                    </li>
+                                    <li>
+                                        <a href="page-blog.html">Categories</a>
+                                    </li>
+                                    <li>
+                                        <a href="page-blog.html">Reviews</a>
+                                    </li>
+                                    <li>
+                                        <a href="about-us.html">About</a>
+                                    </li>
+                                    <li>
+                                        <a href="contact.html">Contact</a>
+                                    </li>
+                                    <li>
+                                        <a href="page-blog.html">Featured</a>
+                                    </li>
+                                    <li>
+                                        <a href="joom-newlink.html">Joomla Base</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="widget">
+                                <div class="tz-title-filter">
+                                    <h3 class="tz-title">
+                                        <span>Похожие статьи</span>
+                                    </h3>
+                                </div>
+                                <div class="widget-ca-box">
+                                    <ul class="widget-post-box">
+                                        {% for sim_article in similar_articles %}
+                                        <li>
+                                            <div class="widget_thumbnail">
+                                                <a href="{{ sim_article.get_absolute_url }}">
+                                                    <img src="{{ sim_article.thumbnail.url }}" alt="{{ sim_article.title }}">
+                                                </a>
+                                            </div>
+                                            <div class="widget_item_info">
+                                                <h4><a href="{{ sim_article.get_absolute_url }}">{{ sim_article.title }}</a></h4>
+                                                <span class="meta">by <a href="/users/{{ sim_article.author.profile.slug }}">{{ sim_article.author }}/ </a>  {{ sim_article.time_create }} </span>
+                                            </div>
+                                        </li>
+                                        {% endfor %}
+                                        <div class="card mb-2 border-0">
+
+
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="widget">
+                                <div class="tz-title-filter">
+                                    <h3 class="tz-title">
+                                        <span>Популярные теги</span>
+                                    </h3>
+                                </div>
+                                <div class="tagcloud">
+                                     {% popular_tags as tag_list %}
+                                    {% for tag in tag_list %}
+                                    <a href="{% url 'blog:articles_by_tags' tag.slug %}">{{ tag.name }}({{ tag.num_times }})</a>
+                                    {% empty %}
+				                    <li>Популярных тегов не найдено.</li>
+				                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="col-md-9 border-left">
+                            <article class="single-post">
+
+                                <div class="tz-single-thumbnail">
+
+                                    {% if not article.thumbnail %}
+                                    <img src="{% static 'images/data/image-demo/870x537.png' %}" alt="{{ article.title }}">
+                                    {% else %}
+                                    <img src="{{ article.thumbnail.url }}" alt="{{ article.title }}">
+                                    {% endif %}
+                                </div>
+                                <h1 class="single-title">{{ article.title }}</h1>
+                                <span class="post-meta">Автор: <a href="/users/{{ article.author.profile.slug }}">{{ article.author }}</a> / Опубликовано: {{ article.time_create }} </span>
+
+                                <div class="rating-buttons">
+		<button class="btn btn-sm btn-primary" data-article="{{ article.id }}" data-value="1">Лайк</button>
+		<button class="btn btn-sm btn-secondary" data-article="{{ article.id }}" data-value="-1">Дизлайк</button>
+		<button class="btn btn-sm btn-secondary rating-sum">{{ article.get_sum_rating }}</button>
+	</div>
+                                <div class="post-content">
+                                    <p>
+                                    {{ article.full_description|safe }}
+                                    </p>
+                                </div>
+
+
+
+<!--                                tags-->
+                                <div class="sing-post-footer">
+                                    <div class="meta-tags pull-left">
+
+                                        	{% if article.tags.all %}
+
+	<div class="card-footer border-0">
+		Теги: {% for tag in article.tags.all %} <a href="{% url 'blog:articles_by_tags' tag.slug %}">{{ tag }}</a>, {% endfor %}
+	</div>
+	{% endif %}
+
+                                    </div>
+                                    <div class="tz-share pull-right">
+                                        Share:
+                                        <a href="#" class="fa fa-facebook-square"></a>
+                                        <a href="#" class="fa fa-twitter"></a>
+                                        <a href="#" class="fa fa-google"></a>
+                                        <a href="#" class="fa fa-dribbble"></a>
+                                        <a href="#" class="fa fa-behance"></a>
+                                    </div>
+                                </div>
+<!--                                end tags-->
+                                {% include 'blog/comments/comments_list.html' %}
+
+<!--                                comments-->
+<!--                                <div class="tz-comment">-->
+<!--                                    <h2 class="comments-title tz-title"><span>Comments (4)</span></h2>-->
+<!--                                    <ol class="comments-list">-->
+<!--                                        <li>-->
+<!--                                            <div class="comment-image">-->
+<!--                                                <img src="images/data/image-demo/110x110.png" alt="author">-->
+<!--                                            </div>-->
+<!--                                            <div class="comment-block">-->
+<!--                                                <cite>Richard Nemur</cite>-->
+<!--                                                <div class="comment-content">-->
+<!--                                                    <p>-->
+<!--                                                        Quisque metus enim, venenatis fermentum, mollis in, porta et, nibh. Duis vulputate elit in elit.-->
+<!--                                                    </p>-->
+<!--                                                </div>-->
+<!--                                            </div>-->
+<!--                                        </li>-->
+<!--                                        <li>-->
+<!--                                            <div class="comment-image">-->
+<!--                                                <img src="images/data/image-demo/110x110.png" alt="author">-->
+<!--                                            </div>-->
+<!--                                            <div class="comment-block">-->
+<!--                                                <cite>Richard Nemur</cite>-->
+<!--                                                <div class="comment-content">-->
+<!--                                                    <p>-->
+<!--                                                        Quisque metus enim, venenatis fermentum, mollis in, porta et, nibh. Duis vulputate elit in elit.-->
+<!--                                                    </p>-->
+<!--                                                </div>-->
+<!--                                            </div>-->
+<!--                                        </li>-->
+<!--                                        <li>-->
+<!--                                            <div class="comment-image">-->
+<!--                                                <img src="images/data/image-demo/110x110.png" alt="author">-->
+<!--                                            </div>-->
+<!--                                            <div class="comment-block">-->
+<!--                                                <cite>Richard Nemur</cite>-->
+<!--                                                <div class="comment-content">-->
+<!--                                                    <p>-->
+<!--                                                        Quisque metus enim, venenatis fermentum, mollis in, porta et, nibh. Duis vulputate elit in elit.-->
+<!--                                                    </p>-->
+<!--                                                </div>-->
+<!--                                            </div>-->
+<!--                                        </li>-->
+<!--                                    </ol>-->
+<!--                                    <div id="respond" class="comment-respond">-->
+<!--                                        <h3 id="reply-title" class="comment-reply-title tz-title">-->
+<!--                                            <span>Leave a comment</span>-->
+<!--                                        </h3>-->
+<!--                                        <form id="commentform" class="comment-form">-->
+<!--                                            <div class="row">-->
+<!--                                                <div class="comment-form-author  col-sm-6">-->
+<!--                                                    <input id="author" name="author" type="text" placeholder="Full Name*" value="">-->
+<!--                                                </div>-->
+<!--                                                <div class="comment-form-email col-sm-6">-->
+<!--                                                    <input id="email" name="email" type="text" placeholder="Email*" value="">-->
+<!--                                                </div>-->
+<!--                                                <div class="col-sm-12">-->
+<!--                                                    <textarea placeholder="Enter Your Comment" id="comment" name="comment" cols="40" rows="8"></textarea>-->
+<!--                                                </div>-->
+<!--                                                <div class="col-md-12">-->
+<!--                                                    <input name="submit" type="submit" id="submit" class="submit" value="Post Comments">-->
+<!--                                                </div>-->
+<!--                                            </div>-->
+<!--                                        </form>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                                endcoments-->
+
+
+                            </article>
+                        </div>
+                    </div><!--End row-->
+                </div><!--End container-->
+            </div>
+            <!--End blog post-->
+
+        </div>
+        <!--End blog wrap-->
+
+
+
+
+
+{% endblock %}
+{% block script %}
+<script src="{% static 'custom/js/ratings.js' %}"></script>
+{% endblock%}

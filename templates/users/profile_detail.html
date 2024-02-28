@@ -1,0 +1,226 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} {{ title }} {% endblock %}
+
+                {% block headbanner %}
+                <div class="tz-header-ads pull-right">
+                    <a href="#">
+                        <img src="{% static 'images/data/header-replace.png' %}" alt="ads">
+                    </a>
+                </div>
+                {% endblock %}
+
+        <!--Heading-->
+        {% block sidebarbanner %}
+        <div class="tz-heading">
+            <img src="{% static 'images/data/image-demo/1220x232.png' %}" alt="blog page">
+            <h1>Categories - Right sidebar</h1>
+        </div>
+        {% endblock %}
+        <!--End Heading-->
+
+        <!--Blog wrap-->
+        {% block content %}
+
+        <!--Page wrap-->
+        <div class="joom-base">
+            <div class="container">
+                <div class="row">
+
+                    <!--Left-->
+                    <div class="col-md-3">
+
+                        <!--Joom Control-->
+                        <div class="joom-control">
+                            <form class="search-control">
+                                <input type="text" name="s" value="" placeholder="Search by words">
+                                <i class="fa fa-search"></i>
+                            </form>
+                            <ul>
+                                <li>
+                                    <a href="joom-login.html">Log In Form</a>
+                                </li>
+                                <li class="active">
+                                    <a href="joom-register.html">Register Form</a>
+                                </li>
+                                <li>
+                                    <a href="joom-login.html">Log In Form</a>
+                                </li>
+                                <li>
+                                    <a href="joom-reminduser.html">Remind User</a>
+                                </li>
+                                <li>
+                                    <a href="joom-resetaccount.html">Reset Pass</a>
+                                </li>
+                                <li>
+                                    <a href="joom-editprofile.html">Edit User Profile</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <!--End Joom Control-->
+
+                    </div>
+                    <!--End left-->
+
+                    <!--Right-->
+                    <div class="col-md-9">
+                        <div class="joom-profile">
+                            <h4 class="joomla-title">Edit Profile User</h4>
+                            <p>Please enter the email address for your account. A verification code will be sent to you. Once you have received the verification code, you will be able to choose a new password for your account.</p>
+                            <div class="row joom-profile-content">
+                                <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+                                    <div class="user-info">
+                                        <h3 class="joomla-title">Обо мне</h3>
+                                        <p>{{ profile.bio }}</p>
+                                        <a href="#" class="j-entry-edit"> Edit</a>
+                                        <div class="joined">
+                                            <h6 class="joomla-title">Мероприятия к которым вы присоеденились</h6>
+                                            <ul>
+                                                <li>Science In The New Era</li>
+                                                <li>How To Sell Anything</li>
+                                                <li>Sussecful on your Business</li>
+                                            </ul>
+                                            <a href="#" class="j-entry-edit"> Edit</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                    <div class="TzUserProfiler">
+                                        <div class="tzuser-info">
+                                            <figure class="avatar">
+                                                <img src="{{ profile.avatar.url }}" alt="{{ profile }}">
+                                            </figure>
+<!--                                            {{ profile }}-->
+                                            <h5 class="joomla-title"> {% if profile.user.get_full_name %} {{ profile.user.get_full_name }}{% endif %}</h5>
+                                            <li>{% if profile.is_online %}Онлайн{% else %}Не в сети{% endif %}</li>
+                                            <li>Никнейм: {{ profile.user.username }}</li>
+                                            <li>Заходил: {{ profile.user.last_login }} </li>
+
+
+                                            <li>Дата рождения: {{ profile.birth_date }}</li>
+
+                                            <p>
+                                                Wedding Filmographer
+                                                <span>Newyork, USA</span>
+                                            </p>
+
+                     {% if request.user.is_authenticated and request.user != profile.user %} {% if request.user.profile in profile.followers.all %}
+					<button class="btn btn-sm btn-danger btn-follow" data-slug="{{ profile.slug }}">
+						Отписаться от {{ profile.user.username }}
+					</button>
+					{% else %}
+					<button class="btn btn-sm btn-primary btn-follow" data-slug="{{ profile.slug }}">
+						Подписаться на {{ profile.user.username }}
+					</button>
+					{% endif %} {% elif request.user == profile.user %}
+					<a href="{% url 'users:profile_edit' %}" class="btn btn-sm btn-primary">Редактировать профиль</a>
+					{% endif %}
+
+
+
+                                <div class="card border-0">
+		<div class="card-body">
+			<div class="row">
+				<div class="col-md-6">
+					<h6 class="card-title">
+						Подписки
+					</h6>
+					<div class="card-text">
+						<div class="row">
+							{% for following in profile.following.all %}
+							<div class="col-md-2">
+								<a href="{{ following.get_absolute_url }}">
+									<img src="{{ following.get_avatar }}" class="img-fluid rounded-1" alt="{{ following }}" />
+								</a>
+							</div>
+							{% endfor %}
+						</div>
+					</div>
+				</div>
+				<div class="col-md-6">
+					<h6 class="card-title">
+						Подписчики
+					</h6>
+					<div class="card-text">
+						<div class="row followers-box">
+							{% for follower in profile.followers.all %}
+							<div class="col-md-2" id="user-slug-{{ follower.slug }}">
+								<a href="{{ follower.get_absolute_url }}">
+									<img src="{{ follower.get_avatar }}" class="img-fluid rounded-1" alt="{{ follower }}" />
+								</a>
+							</div>
+							{% endfor %}
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+
+
+                                        </div>
+                                        <div class="social">
+                                            <a class="fa fa-facebook-square" href="#"></a>
+                                            <a class="fa fa-twitter" href="#"></a>
+                                            <a class="fa fa-google" href="#"></a>
+                                            <a class="fa fa-dribbble" href="#"></a>
+                                            <a class="fa fa-behance" href="#"></a>
+                                        </div>
+                                        <a href="{% url 'users:profile_edit' %}" class="j-entry-edit"> Редактировать</a>
+                                        <div class="tz-photos">
+                                            <div class="tz-title-filter">
+                                                <h3 class="tz-title">
+                                                    <span>Photos</span>
+                                                </h3>
+                                            </div>
+                                            <ul class="tz-post-photos">
+                                                <li>
+                                                    <a href="#">
+                                                        <img src="images/data/image-demo/110x110.png" alt="photo one">
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">
+                                                        <img src="images/data/image-demo/110x110.png" alt="photo one">
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">
+                                                        <img src="images/data/image-demo/110x110.png" alt="photo one">
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">
+                                                        <img src="images/data/image-demo/110x110.png" alt="photo one">
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">
+                                                        <img src="images/data/image-demo/110x110.png" alt="photo one">
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">
+                                                        <img src="images/data/image-demo/110x110.png" alt="photo one">
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--End Right-->
+
+                </div>
+            </div>
+        </div>
+        <!--End Page wrap-->
+{% endblock %}
+{% block script %}
+<script src="{% static 'custom/js/profile.js' %}"></script>
+{% endblock %}

@@ -1,0 +1,135 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} {{ title }} {% endblock %}
+
+                {% block headbanner %}
+                <div class="tz-header-ads pull-right">
+                    <a href="#">
+                        <img src="{% static 'images/data/header-replace.png' %}" alt="ads">
+                    </a>
+                </div>
+                {% endblock %}
+
+        <!--Heading-->
+        {% block sidebarbanner %}
+        <div class="tz-heading">
+            <img src="{% static 'images/data/image-demo/1220x232.png' %}" alt="blog page">
+            <h1>Categories - Right sidebar</h1>
+        </div>
+        {% endblock %}
+        <!--End Heading-->
+
+        <!--Blog wrap-->
+        {% block content %}
+
+        <!--Page wrap-->
+        <div class="joom-base">
+            <div class="container">
+                <div class="row">
+
+                    <!--Left-->
+                    <div class="col-md-3">
+
+                        <!--Joom Control-->
+                        <div class="joom-control">
+                            <form class="search-control">
+                                <input type="text" name="s" value="" placeholder="Search by words">
+                                <i class="fa fa-search"></i>
+                            </form>
+                            <ul>
+                                <li>
+                                    <a href="joom-login.html">Log In Form</a>
+                                </li>
+                                <li class="active">
+                                    <a href="joom-register.html">Register Form</a>
+                                </li>
+                                <li>
+                                    <a href="joom-login.html">Log In Form</a>
+                                </li>
+                                <li>
+                                    <a href="joom-reminduser.html">Remind User</a>
+                                </li>
+                                <li>
+                                    <a href="joom-resetaccount.html">Reset Pass</a>
+                                </li>
+                                <li>
+                                    <a href="joom-editprofile.html">Edit User Profile</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <!--End Joom Control-->
+
+                    </div>
+                    <!--End left-->
+
+                    <!--Right-->
+                    <div class="col-md-9">
+                        <div class="joom-login">
+                            <h4 class="joomla-title">Log In</h4>
+                            <p>A selection of links that are all related to the Life Mag.</p>
+                            <div class="row joomla-form-content">
+                                <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+
+
+
+
+                                         <div class="card mb-3 border-0 nth-shadow">
+        <div class="card-body">
+            <div class="card-title nth-card-title">
+                <h4>Авторизация на сайте</h4>
+            </div>
+            <form method="post" action="{% url 'users:login' %}">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <div class="d-grid gap-2 d-md-block mt-2">
+                <button type="submit" class="btn btn-dark">Авторизоваться</button>
+             </div>
+            </form>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+                                        <form class="form-horizontal">
+                                        <div class="row form-group">
+                                            <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                                                <label>Username:</label>
+                                            </div>
+                                            <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
+                                                <input type="text" value="" name="name">
+                                            </div>
+                                        </div>
+                                        <div class="row form-group">
+                                            <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                                                <label>Password:</label>
+                                            </div>
+                                            <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
+                                                <input type="password" value="" name="password">
+                                                <button type="submit"> Log in</button>
+                                            </div>
+                                        </div>
+
+                                    </form>
+                                </div>
+                                <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                                    <ul class="joom-form-meta">
+                                        <li><a href="#">Forgotten Password?</a></li>
+                                        <li><a href="#">Forgot your username?</a></li>
+                                        <li><a href="#">Don’t have an account?</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--End Right-->
+
+                </div>
+            </div>
+        </div>
+        <!--End Page wrap-->
+{% endblock %}

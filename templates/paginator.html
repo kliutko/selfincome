@@ -1,0 +1,33 @@
+<!--Pagination-->
+                        <nav class="tz-pagination">
+                            <ul class="pagination_list">
+                                {% if is_paginated %}
+                                {% if page_obj.has_previous %}
+                                <li>
+                                    <a class="prev" href="?page={{ page_obj.previous_page_number }}"><i class="fa fa-angle-left"></i></a>
+                                </li>
+                                {% endif %}
+
+                                {% for item in page_obj.paginator.page_range %}
+                                {% if page_obj.number == item %}
+                                <li>
+                                    <span class="current">{{ item }}</span>
+                                </li>
+                                {% elif item >= page_obj.number|add:-2 and item <= page_obj.number|add:2 %}
+                                <li>
+                                    <a href="?page={{ item }}">{{ item }}</a>
+                                </li>
+                                {% endif %}
+                                {% endfor %}
+
+                                {% if page_obj.has_next %}
+                                <li>
+                                    <a class="next" href="?page={{ page_obj.next_page_number }}"><i class="fa fa-angle-right"></i></a>
+                                </li>
+                                {% endif %}
+          		                {% endif %}
+                            </ul>
+                            <span class="page-current">
+                    Страница: {{ page_obj.number }} из {{ page_obj.paginator.num_pages }}.
+                </span>
+                        </nav>

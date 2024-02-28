@@ -1,0 +1,338 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load mptt_tags blog_tags %}
+
+{% block title %} {{ title }} {% endblock %}
+
+                {% block headbanner %}
+                <div class="tz-header-ads pull-right">
+                    <a href="#">
+                        <img src="{% static 'images/data/header-replace.png' %}" alt="ads">
+                    </a>
+                </div>
+                {% endblock %}
+
+        <!--Heading-->
+        {% block sidebarbanner %}
+        <div class="tz-heading">
+            <img src="{% static 'images/data/image-demo/1220x232.png' %}" alt="blog page">
+            <h1>Categories - Right sidebar</h1>
+        </div>
+        {% endblock %}
+        <!--End Heading-->
+
+        <!--Blog wrap-->
+        {% block content %}
+        <div class="blog-post-sidebar">
+
+        <!--Blog post-->
+        <div class="blog-post blog-border-widgets">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9 tzright_style tzcontent">
+                        <div class="item-thumbnail-wrap item-blog-heading">
+                            <div class="tz-thumbnail">
+                                <a href="single-blog.html">
+                                    <img src="{% static 'images/data/image-demo/870x383.png' %}" alt="The 20 free things in Sydney with my girlfriend">
+                                </a>
+
+                                <div class="tz-infomation">
+                                    <h3 class="tz-post-title"><a href="single-blog.html">The 20 free things in Sydney with my girlfriend</a></h3>
+                                    <span class="meta">by <a href="page-blog.html">Jane William Doe / </a>  12 April 2015 </span>
+                                </div>
+                            </div>
+                        </div>
+                        {% for article in articles %}
+                        <div class="item-list-style">
+                            <div class="row">
+                                <div class="col-md-4 col-sm-4">
+                                    <div class="tz-thumbnail">
+                                        {% if article.thumbnail %}
+                                        <img src="{{ article.thumbnail.url }}" alt="{{ article.title }}">
+                                        {% else %}
+                                        <img src="{% static 'images/data/image-demo/270x181.png' %}" alt="{{ article.title }}">
+                                        {% endif %}
+                                    </div>
+                                </div>
+                                <div class="col-md-8 col-sm-8">
+                                    <div class="tz-infomation">
+                                        <h3 class="tz-post-title"><a href="{{ article.get_absolute_url }}">{{ article.title }}</a></h3>
+                                        <span class="meta">Автор: <a href="/users/{{ article.author.profile.slug }}">{{ article.author }} / </a> Опубликовано:  {{ article.time_create }} / Просмотры: {{ article.get_view_count }} </span>
+                                        <div class="rating-buttons">
+                    <button class="btn btn-sm btn-primary" data-article="{{ article.id }}" data-value="1">Лайк</button>
+                    <button class="btn btn-sm btn-secondary" data-article="{{ article.id }}" data-value="-1">Дизлайк</button>
+                    <button class="btn btn-sm btn-secondary rating-sum">{{ article.get_sum_rating }}</button>
+                </div>
+                                        <p>{{ article.short_description|truncatewords:55|safe }}
+                                        </p>
+                                        <a href="{{ article.get_absolute_url }}" class="readmore">Подробнее</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+
+
+{% include 'paginator.html' %}
+
+
+
+
+
+
+                    </div>
+                    <div class="col-md-3 tzright_sidebar tzsidebar">
+                        <div class="widget widget_search">
+
+                            <form class="col-12 col-lg-auto mb-2 mb-lg-0 me-lg-auto" role="search" method="get" action="{% url 'blog:search' %}">
+                                <input type="search" class="form-control" placeholder="Поиск..." aria-label="Search" name='do' autocomplete="off" id="search">
+                                <i class="icon-search fa fa-search"></i>
+                            </form>
+                        </div>
+                        <div class="widget">
+                            <div class="tz-counter">
+                                <ul>
+                                    <li>
+                                        <a href="#">
+                                            <span class="icon-social">
+                                                <i class="fa fa-facebook-square"></i>
+                                            </span>
+                                            <strong>5,782</strong>
+                                            <span class="number">Fans</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <span class="icon-social">
+                                                <i class="fa fa-dribbble"></i>
+                                            </span>
+                                            <strong>43</strong>
+                                            <span class="number">followers</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <span class="icon-social">
+                                                <i class="fa fa-google"></i>
+                                            </span>
+                                            <strong>348</strong>
+                                            <span class="number">followers</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <span class="icon-social">
+                                                <i class="fa fa-twitter"></i>
+                                            </span>
+                                            <strong>291</strong>
+                                            <span class="number">followers</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <span class="icon-social">
+                                                <i class="fa fa-behance"></i>
+                                            </span>
+                                            <strong>182</strong>
+                                            <span class="number">Fans</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <span class="icon-social">
+                                                <i class="fa fa-linkedin-square"></i>
+                                            </span>
+                                            <strong>182</strong>
+                                            <span class="number">Fans</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <span class="icon-social">
+                                                <i class="fa fa-pinterest-square"></i>
+                                            </span>
+                                            <strong>182</strong>
+                                            <span class="number">Fans</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <span class="icon-social">
+                                                <i class="fa fa-instagram"></i>
+                                            </span>
+                                            <strong>182</strong>
+                                            <span class="number">Fans</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <span class="icon-social">
+                                                <i class="fa fa-youtube"></i>
+                                            </span>
+                                            <strong>182</strong>
+                                            <span class="number">Fans</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="widget">
+                            <div class="tz-title-filter">
+                                <h3 class="tz-title">
+                                    <span>VIDEOS</span>
+                                </h3>
+                                <div class="tz-cat-filter">
+                                    <span>All</span>
+                                </div>
+                            </div>
+                            <div class="post-type-video">
+                                <div class="item-large">
+                                    <div class="tz-thumbnail post-video">
+                                        <a href="#">
+                                            <img src="{% static 'images/data/image-demo/370x248.png' %}" alt="The 20 free things in Sydney with my girlfriend">
+                                            <span class="post-icon"><i class="fa fa-play"></i></span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        {% load blog_tags cache %}
+                    {% cache 300 sidebar %}
+                        <div class="widget">
+                            <div class="tz-title-filter">
+                                <h3 class="tz-title">
+                                    <span>Популярное за неделю</span>
+                                </h3>
+
+
+
+                            </div>
+                            <div class="widget-ca-box">
+                                <ul class="widget-post-box">
+ {% popular_articles as articles_list %}
+        		{% for article in articles_list %}
+                                    <li>
+
+                                        <div class="widget_thumbnail">
+                                            {% if not article.thumbnail %}
+                                    <img src="{% static 'images/data/image-demo/870x537.png' %}" alt="{{ article.title }}">
+                                    {% else %}
+                                            <a href="{{ article.get_absolute_url }}">
+                                    <img src="{{ article.thumbnail.url }}" alt="{{ article.title }}">
+                                    </a>
+                                                {% endif %}
+
+                                        </div>
+                                        <div class="widget_item_info">
+                                            <h4><a href="{{ article.get_absolute_url }}">{{ article.title }}</a></h4>
+                                            <span class="meta">by <a href="/users/{{ article.author.profile.slug }}">{{ article.author }}/ </a>
+                                                 {{ article.time_create }} / ({{ article.get_view_count }}) +({{ article.get_today_view_count}}) </span>
+                                        {% empty %}
+				                        <li>Популярных статей не найдено.</li>
+
+                                        </div>
+                              {% endfor %}
+                                    </li>
+                {% endcache %}
+
+
+
+
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="widget">
+                            <div class="tz-photos">
+                                <div class="tz-title-filter">
+                                    <h3 class="tz-title">
+                                        <span>INSTAGRAM</span>
+                                    </h3>
+                                </div>
+                                <ul class="tz-post-photos">
+                                    <li>
+                                        <a href="#">
+                                            <img src="{% static 'images/data/image-demo/110x110.png' %}" alt="photo one">
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <img src="{% static 'images/data/image-demo/110x110.png' %}" alt="photo one">
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <img src="{% static 'images/data/image-demo/110x110.png' %}" alt="photo one">
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <img src="{% static 'images/data/image-demo/110x110.png' %}" alt="photo one">
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <img src="{% static 'images/data/image-demo/110x110.png' %}" alt="photo one">
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <img src="{% static 'images/data/image-demo/110x110.png' %}" alt="photo one">
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <img src="{% static 'images/data/image-demo/110x110.png' %}" alt="photo one">
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <img src="{% static 'images/data/image-demo/110x110.png' %}" alt="photo one">
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <img src="{% static 'images/data/image-demo/110x110.png' %}" alt="photo one">
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+
+                        <div class="widget">
+                            <div class="abs">
+                                <a href="#"><img src="{% static 'images/data/image-demo/336x280.png' %}" alt="ads3"></a>
+                            </div>
+                        </div>
+
+
+                        <div class="widget">
+                                <div class="tz-title-filter">
+                                    <h3 class="tz-title">
+                                        <span>Популярные теги</span>
+                                    </h3>
+                                </div>
+                                <div class="tagcloud">
+
+                                    {% popular_tags as tag_list %}
+                                    {% for tag in tag_list %}
+
+                                    <a href="{% url 'blog:articles_by_tags' tag.slug %}">{{ tag.name }}({{ tag.num_times }})</a>
+                                    {% empty %}
+				                    <li>Популярных тегов не найдено.</li>
+				                    {% endfor %}
+                                </div>
+                            </div>
+                    </div>
+                </div><!--End row-->
+            </div><!--End container-->
+        </div>
+        <!--End blog post-->
+
+        </div>
+        {% endblock %}
+        <!--End blog wrap-->
+{% block script %}
+<script src="{% static 'custom/js/ratings.js' %}"></script>
+{% endblock%}

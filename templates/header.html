@@ -1,0 +1,70 @@
+<!--Start header top-->
+            <div class="tz-header-top">
+                <div class="container">
+
+                    <!--Header top left-->
+                    <div class="tz-header-top-left pull-left">
+                        <div class="tz-data-time pull-left">TUESDAY, MAY 5, 2015  </div>
+                        <ul class="top-header-menu pull-left">
+
+                            <li>
+                                <a href="#">ADVERTISE</a>
+                            </li>
+                            <li>
+                                <a href="{% url 'system:feedback' %}">CONTACT</a>
+                            </li>
+                            <li>
+                                <a href="#">BUY NOW</a>
+                            </li>
+
+                            {% if user.is_authenticated %}
+                             <li>
+                                <a href="{% url 'users:profile_detail' request.user.profile.slug %}" >Профиль</a>
+                            </li>
+                            <li>
+                                <a href="{% url 'users:logout' %}" "> Выход</a>
+                            </li>
+
+
+                            {% else %}
+                            <li>
+                                <a href="{% url 'users:login' %}" >Вход</a>
+                            </li>
+                            <li>
+                                <a href="{% url 'users:register' %}"> Регистрация</a>
+                            </li>
+<!--                            <li>-->
+<!--                                <a href="{% url 'users:register' %}" class="active"> Регистрация</a>-->
+<!--                            </li>-->
+                            {% endif %}
+
+<!--                            {% if user.is_superuser or user.is_staff %}-->
+<!--                            <li>-->
+<!--                                <a href="{% url 'admin:login' %}" "> Админ панель </a>-->
+<!--                            </li>-->
+<!--                            {% endif %}-->
+                        </ul>
+                    </div>
+                    <!--End header top left-->
+                    <div class="tz-header-top-right pull-right">
+                        <ul class="top-header-social pull-right">
+                            <li>
+                                <a href="#"><i  class="fa fa-facebook-square"></i></a>
+                            </li>
+                            <li>
+                                <a href="#"><i class="fa fa-twitter"></i></a>
+                            </li>
+                            <li>
+                                <a href="#"><i class="fa fa-google"></i></a>
+                            </li>
+                            <li>
+                                <a href="#"><i class="fa fa-dribbble"></i></a>
+                            </li>
+                            <li>
+                                <a href="#"><i class="fa fa-behance"></i></a>
+                            </li>
+                        </ul>
+                        <div class="tz-hotline pull-right"><i class="fa fa-phone"></i>A1: +375 44 727 75 06</div>
+                    </div>
+                </div>
+            </div>

@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+{% load static %}
+{% load mptt_tags blog_tags %}
+
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>{% block title %} {{ title }} {% endblock %}</title>
+
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+    <link href="{% static 'fonts/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/owl.carousel.css' %}" rel="stylesheet" />
+    <link href="{% static 'css/owl.theme.css' %}" rel="stylesheet" />
+    <link href="{% static 'css/custom.css' %}" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="js/html5shiv.min.js"></script>
+    <script src="js/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+
+
+    <div class="site">
+{% include 'includes/messages.html' %}
+        <!--Start Header-->
+        <header class="tz-header">
+
+            {% include 'header.html' %}
+            <!--End header top-->
+
+            <!--Header Content-->
+            <div class="tz-header-content">
+                <div class="tz-header-logo pull-left">
+                    <a href="{% url 'blog:home' %}">
+                        <img src="{% static 'images/LifeMag.png' %}" alt="LifeMag">
+                    </a>
+                </div>
+
+
+                {% block headbanner %}
+
+                {% endblock %}
+
+
+<!--                &lt;!&ndash;navigation mobi&ndash;&gt;-->
+<!--                <button data-target=".nav-collapse" class="btn-navbar tz_icon_menu" type="button">-->
+<!--                    <i class="fa fa-bars"></i>-->
+<!--                </button>-->
+<!--                &lt;!&ndash;End navigation mobi&ndash;&gt;-->
+<!--            </div>-->
+<!--            &lt;!&ndash;Header end content&ndash;&gt;-->
+        {% include 'sidebar_menu.html' %}
+
+                    <!--Start search-->
+                    <div class="tz-search pull-right" role="search" method="get" action="{% url 'blog:search' %}">
+                        <form class="tz-form-search">
+        <input type="search" class="form-control" placeholder="Search..." aria-label="Search" name='do' autocomplete="off" id="search">
+                            <i class="fa fa-search tz-button-search"></i>
+                        </form>
+                    </div>
+                    <!--End search-->
+
+                </div>
+            </div>
+            <!--End header menu-->
+
+        </header>
+        <!--End header-->
+
+        <!--Heading-->
+
+        {% block sidebarbanner %}
+
+        {% endblock %}
+
+        <!--End Heading-->
+
+        <!--Control-->
+        <div class="tz-control">
+            <div class="container">
+
+                <!--Breadcrumbs-->
+                <ul class="tz-breadcrumbs pull-left">
+                    <li>
+                        <a href="index.html">Home</a><i class="fa fa-angle-right"></i>
+                    </li>
+                    <li>
+                        <a href="categories-blogrightstyle.html">Category</a><i class="fa fa-angle-right"></i>
+                    </li>
+                    <li>
+                        Right sidebar
+                    </li>
+                </ul>
+                <!--End breadcrumbs-->
+
+                <!--Blog control meta-->
+                <div class="blog-control-meta pull-right">
+
+                    <!--Blog Order-->
+                    <form class="blog-order pull-left">
+                        <div class="form-field field-sort-by">
+                            <label>Sort By</label>
+                            <div class="form-arrow">
+                                <select class="sort-by">
+                                    <option value="default">Default</option>
+                                    <option value="date">Date</option>
+                                    <option value="title">Title</option>
+                                    <option value="id">ID</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-field">
+                            <label>Show</label>
+                            <div class="form-arrow">
+                                <select class="show-page">
+                                    <option value="9">9</option>
+                                    <option value="8">8</option>
+                                    <option value="7">7</option>
+                                    <option value="6">6</option>
+                                </select>
+                            </div>
+                        </div>
+                    </form>
+                    <!--End blog Order-->
+
+                </div>
+                <!--end blog control meta-->
+
+            </div>
+        </div>
+        <!--End control-->
+
+        <!--Blog wrap-->
+
+        {% block content %}
+
+        {% endblock %}
+        <!--End blog wrap-->
+
+        <!--Start Footer-->
+        <footer class="tz-footer">
+            <div class="container footer-content">
+                <div class="row">
+
+                    <!--Footer one-->
+                    <div class="col-md-3 col-sm-6">
+                        <div class="widget">
+                            <h4 class="widget_title">About Us</h4>
+                            <div class="widget_about">
+                                <h2>LifeMag</h2>
+                                <p>Sed ut perspiciatis unde omnis iste natus error sit voluptat accusantium doloremque laudantium, totam rem aperiam, </p>
+                                <ul class="widget_about_meta">
+                                    <li>
+                                        <address>
+                                            122 Baker St, Marylebone London, W1U 6TX
+                                        </address>
+                                    </li>
+                                    <li>
+                                        0870 241 3300
+                                    </li>
+                                    <li>
+                                        <a href="#">support@theme.com</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <!--End Footer one-->
+
+
+                    <!--Footer Two-->
+                    <div class="col-md-3 col-sm-6">
+                        <div class="widget recent_post">
+                            <h4 class="widget_title">Популярное за неделю</h4>
+                            <ul>
+                                <li>
+
+                                </li>
+
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!--End Footer two-->
+
+                    <!--Footer Three-->
+{% show_latest_comments count=5 %}
+                    <!--End Footer three-->
+
+                    <!--Footer four-->
+                    <div class="col-md-3 col-sm-6">
+                        <div class="widget widget_menu">
+                            <h4 class="widget_title">Information</h4>
+                            <ul>
+                                <li>
+                                    <a href="about-us.html">About Us</a>
+                                </li>
+                                <li>
+                                    <a href="index.html">Overview LifeMag</a>
+                                </li>
+                                <li>
+                                    <a href="index.html">All about Our Team</a>
+                                </li>
+                                <li>
+                                    <a href="index.html">Innovation</a>
+                                </li>
+                                <li>
+                                    <a href="index.html">Testimonials</a>
+                                </li>
+                                <li>
+                                    <a href="index.html">Project</a>
+                                </li>
+                                <li>
+                                   <a href="{% url 'latest_articles_feed' %}">RSS лента</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!--End Footer four-->
+
+                </div>
+            </div>
+
+            <div class="tz-copyright">
+                <div class="container">
+                    <p class="pull-left copyright-content">&copy; Copyrights 2024 SelfIncome, Inc. All rights reserved.</p>
+                    <ul class="pull-right footer-social">
+                        <li>
+                            <a href="#"><i  class="fa fa-facebook-square"></i></a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-twitter"></i></a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-google"></i></a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-dribbble"></i></a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-behance"></i></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </footer>
+        <!--End Footer-->
+
+    </div>
+
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/theia-sticky-sidebar.js' %}"></script>
+    <script src="{% static 'js/off-canvas.js' %}"></script>
+    <script src="{% static 'js/owl.carousel.js' %}"></script>
+    <script src="{% static 'js/custom.js' %}"></script>
+    <script src="{% static 'custom/js/backend.js' %}"></script>
+    {% block script %}{% endblock %}
+
+</body>
+</html>

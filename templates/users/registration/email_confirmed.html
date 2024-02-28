@@ -1,0 +1,202 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} {{ title }} {% endblock %}
+
+                {% block headbanner %}
+                <div class="tz-header-ads pull-right">
+                    <a href="#">
+                        <img src="{% static 'images/data/header-replace.png' %}" alt="ads">
+                    </a>
+                </div>
+                {% endblock %}
+
+        <!--Heading-->
+        {% block sidebarbanner %}
+        <div class="tz-heading">
+            <img src="{% static 'images/data/image-demo/1220x232.png' %}" alt="blog page">
+            <h1>Categories - Right sidebar</h1>
+        </div>
+        {% endblock %}
+        <!--End Heading-->
+
+        <!--Blog wrap-->
+        {% block content %}
+
+        <!--Page wrap-->
+        <div class="joom-base">
+            <div class="container">
+                <div class="row">
+
+                    <!--Left-->
+                    <div class="col-md-3">
+
+                        <!--Joom Control-->
+                        <div class="joom-control">
+                            <form class="search-control">
+                                <input type="text" name="s" value="" placeholder="Search by words">
+                                <i class="fa fa-search"></i>
+                            </form>
+                            <ul>
+                                <li>
+                                    <a href="joom-login.html">Log In Form</a>
+                                </li>
+                                <li class="active">
+                                    <a href="joom-register.html">Register Form</a>
+                                </li>
+                                <li>
+                                    <a href="joom-login.html">Log In Form</a>
+                                </li>
+                                <li>
+                                    <a href="joom-reminduser.html">Remind User</a>
+                                </li>
+                                <li>
+                                    <a href="joom-resetaccount.html">Reset Pass</a>
+                                </li>
+                                <li>
+                                    <a href="joom-editprofile.html">Edit User Profile</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <!--End Joom Control-->
+
+                    </div>
+                    <!--End left-->
+
+                    <!--Right-->
+                    <div class="col-md-9">
+                        <div class="joom-register">
+                            <h4 class="joomla-title">Register</h4>
+                            <p>A selection of links that are all related to the Life Mag.</p>
+
+
+
+
+
+<div class="alert alert-success" role="alert">
+    <h4 class="alert-heading">Электронная почта подтверждена</h4>
+    <p>Ваш адрес электронной почты успешно подтвержден. Спасибо за регистрацию!</p>
+</div>
+
+
+
+
+
+<!--                            <form class="form-horizontal">-->
+<!--                                <div class="row">-->
+<!--                                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">-->
+<!--                                        <h4 class="joomla-title">Your Personal Details</h4>-->
+<!--                                        <div class="row form-group">-->
+<!--                                            <div class="col-lg-3 col-md-3 col-sm-8 col-xs-12">-->
+<!--                                                <label>First Name: *</label>-->
+<!--                                            </div>-->
+<!--                                            <div class="col-lg-9 col-md-9 col-sm-8 col-xs-12">-->
+<!--                                                <input type="text" value="" name="first">-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                        <div class="row form-group">-->
+<!--                                            <div class="col-lg-3 col-md-3 col-sm-8 col-xs-12">-->
+<!--                                                <label>Last Name: *</label>-->
+<!--                                            </div>-->
+<!--                                            <div class="col-lg-9 col-md-9 col-sm-8 col-xs-12">-->
+<!--                                                <input type="text" value="" name="last">-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                        <div class="row form-group">-->
+<!--                                            <div class="col-lg-3 col-md-3 col-sm-8 col-xs-12">-->
+<!--                                                <label>E-Mail: *</label>-->
+<!--                                            </div>-->
+<!--                                            <div class="col-lg-9 col-md-9 col-sm-8 col-xs-12">-->
+<!--                                                <input type="email" value="" name="email">-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                        <div class="row form-group">-->
+<!--                                            <div class="col-lg-3 col-md-3 col-sm-8 col-xs-12">-->
+<!--                                                <label>Telephone: *</label>-->
+<!--                                            </div>-->
+<!--                                            <div class="col-lg-9 col-md-9 col-sm-8 col-xs-12">-->
+<!--                                                <input type="text" value="" name="telephone">-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                        <div class="row form-group">-->
+<!--                                            <div class="col-lg-3 col-md-3 col-sm-8 col-xs-12">-->
+<!--                                                <label>Fax:</label>-->
+<!--                                            </div>-->
+<!--                                            <div class="col-lg-9 col-md-9 col-sm-8 col-xs-12">-->
+<!--                                                <input type="text" value="" name="fax">-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                        <div class="row form-group">-->
+<!--                                            <div class="col-lg-3 col-md-3 col-sm-8 col-xs-12">-->
+<!--                                                <label>Company:</label>-->
+<!--                                            </div>-->
+<!--                                            <div class="col-lg-9 col-md-9 col-sm-8 col-xs-12">-->
+<!--                                                <input type="text" value="" name="company">-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                        <p class="form-ds"><input type="checkbox" name="check"> I have read and agree to the Privacy Policy</p>-->
+<!--                                    </div>&lt;!&ndash;end class 6&ndash;&gt;-->
+<!--                                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">-->
+<!--                                        <h4 class="joomla-title">Your Addess</h4>-->
+<!--                                        <div class="row form-group">-->
+<!--                                            <div class="col-lg-4 col-md-4 col-sm-8 col-xs-12">-->
+<!--                                                <label>Upload Avatar</label>-->
+<!--                                            </div>-->
+<!--                                            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">-->
+<!--                                                <input type="file" name="upload">-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                        <div class="row form-group">-->
+<!--                                            <div class="col-lg-4 col-md-4 col-sm-8 col-xs-12">-->
+<!--                                                <label>URL Avatar:</label>-->
+<!--                                            </div>-->
+<!--                                            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">-->
+<!--                                                <input type="text" value="" name="ulavatar">-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                        <div class="row form-group">-->
+<!--                                            <div class="col-lg-4 col-md-4 col-sm-8 col-xs-12">-->
+<!--                                                <label>Twitter:</label>-->
+<!--                                            </div>-->
+<!--                                            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">-->
+<!--                                                <input type="text" value="" name="twitter">-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                        <div class="row form-group">-->
+<!--                                            <div class="col-lg-4 col-md-4 col-sm-8 col-xs-12">-->
+<!--                                                <label>Facebook:</label>-->
+<!--                                            </div>-->
+<!--                                            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">-->
+<!--                                                <input type="text" value="" name="facebook">-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                        <div class="row form-group">-->
+<!--                                            <div class="col-lg-4 col-md-4 col-sm-8 col-xs-12">-->
+<!--                                                <label>Google+:</label>-->
+<!--                                            </div>-->
+<!--                                            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">-->
+<!--                                                <input type="text" value="" name="google">-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                        <div class="row form-group">-->
+<!--                                            <div class="col-lg-4 col-md-4 col-sm-8 col-xs-12">-->
+<!--                                                <label>Description:</label>-->
+<!--                                            </div>-->
+<!--                                            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">-->
+<!--                                                <input type="text" value="" name="description">-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                        <div class="controls">-->
+<!--                                            <button type="submit">Register</button>-->
+<!--                                        </div>-->
+<!--                                    </div>&lt;!&ndash;end class 6&ndash;&gt;-->
+<!--                                </div>&lt;!&ndash;end class row&ndash;&gt;-->
+<!--                            </form>-->
+                        </div>
+                    </div>
+                    <!--End Right-->
+
+                </div>
+            </div>
+        </div>
+        <!--End Page wrap-->
+        {% endblock %}
